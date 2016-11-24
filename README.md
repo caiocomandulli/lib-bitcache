@@ -2,9 +2,11 @@
 
 Cache was designed to manage image caching in android.
 
+Making it easier for you to pre-load images and reuse them.
+
 ## Usage
  
-Call init(Context) before using any methods on this library.
+Call the init method before using this library.
  
 ```java
  Cache.init(context);
@@ -29,7 +31,9 @@ As in the example we request a Bitmap to use in a ImageView.
   }, "?query=myquery";
   ```
 
-All responses are persisted in the cache folder. Next initialization the file will be already in cache, and when you make a request it will already be ready to use.
+All responses are persisted in the cache folder. 
+
+Next initialization the file will be already in cache, and whenever you make a request it will already be ready to use.
 
 ## Install Library
 
@@ -39,11 +43,11 @@ __Step 2.__ Define a dependency within your project. For that, access to Propert
 
 ##  License
 
-Apache License. See the file LICENSE.md with the full license text.
+MIT License. See the file LICENSE.md with the full license text.
 
 ### Third party libraries
 
-This library uses REST Android Library by Caio Comandulli(myself), version 1.0. Copyright (C) 2016 Caio Comandulli. Licensed under Apache License, Version 2.0.
+This library uses REST Android Library by Caio Comandulli (myself), version 1.0. Copyright (C) 2016 Caio Comandulli. Licensed under MIT License.
 
 ## Compatibility
 
