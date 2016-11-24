@@ -11,6 +11,7 @@ Call init(Context) before using any methods on this library.
  ```
  
 You create a CacheRequest<T> object to make a request to cache.
+
 As in the example we request a Bitmap to use in a ImageView.
  
 ```java
@@ -33,6 +34,7 @@ All responses are persisted in the cache folder. Next initialization the file wi
 ## Install Library
 
 __Step 1.__ Get this code and compile it
+
 __Step 2.__ Define a dependency within your project. For that, access to Properties > Android > Library and click on add and select the library
 
 ##  License
