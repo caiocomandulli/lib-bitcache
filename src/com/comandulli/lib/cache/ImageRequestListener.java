@@ -2,9 +2,9 @@ package com.comandulli.lib.cache;
 
 import android.graphics.Bitmap;
 
-import com.beenoculus.platform.video.lib.volley.Response.ErrorListener;
-import com.beenoculus.platform.video.lib.volley.Response.Listener;
-import com.beenoculus.platform.video.lib.volley.VolleyError;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
 
 /**
  * Listener class used by Cache, this maps a cache item request to all cache requests.

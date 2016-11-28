@@ -11,11 +11,11 @@ import android.provider.MediaStore.Images.Media;
 import android.util.Log;
 import android.widget.ImageView.ScaleType;
 
-import com.beenoculus.platform.video.lib.MD5;
-import com.beenoculus.platform.video.lib.rest.NetworkRequestQueue;
-import com.beenoculus.platform.video.lib.rest.VolleyRequest;
-import com.beenoculus.platform.video.lib.rest.exception.NoInternetConnectionException;
-import com.beenoculus.platform.video.lib.volley.toolbox.ImageRequest;
+import com.comandulli.lib.MD5;
+import com.comandulli.lib.rest.NetworkRequestQueue;
+import com.comandulli.lib.rest.VolleyRequest;
+import com.comandulli.lib.rest.exception.NoInternetConnectionException;
+import com.android.volley.toolbox.ImageRequest;
 
 import java.io.File;
 import java.io.FileOutputStream;
