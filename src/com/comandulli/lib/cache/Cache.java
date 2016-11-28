@@ -175,6 +175,9 @@ public class Cache {
      * Creates a request for a specific file in cache or to be acquired an then cached.
      *
      * @param url     Url or path to the required resource.
+     *                It can be a HTTP request as "http://example.com/examples/image".
+     *                A android resource in apk as "android.resource://com.example.my/R.drawable.example".
+     *                Or a file in the filesystem as "file:///tmp/android.txt". (Don't forget file permissions)
      * @param request Request object.
      * @param query   Any query param needed in the url. Has no influence in cache location.
      */

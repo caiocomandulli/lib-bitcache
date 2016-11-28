@@ -15,10 +15,10 @@ Call the init method before using this library.
 You create a CacheRequest<T> object to make a request to cache.
 
 As in the example we request a Bitmap to use in a ImageView.
- 
+
 ```java
   final ImageView imageView = (ImageView) findViewById(resource);
-  Cache.requestImage("myPathInCache", new CacheRequest<Bitmap>() {
+  Cache.requestImage(requestPath, new CacheRequest<Bitmap>() {
       @Override
       public void onResponse(final Bitmap response) {
           context.runOnUiThread(new Runnable() {
@@ -30,6 +30,12 @@ As in the example we request a Bitmap to use in a ImageView.
       }
   }, "?query=myquery";
   ```
+
+The request path can be a HTTP request as "http://example.com/examples/image".
+
+A android resource in APK as "android.resource://com.app.with.cache/R.drawable.example".
+
+Or a file in the filesystem as "file:///tmp/android.txt". (Don't forget file permissions)
 
 All responses are persisted in the cache folder. 
 
