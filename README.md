@@ -51,7 +51,13 @@ __Step 2.__ Define a dependency within your project. For that, access to Propert
 
 MIT License. See the file LICENSE.md with the full license text.
 
-### Third party libraries
+## Author
+
+[![Caio Comandulli](https://avatars3.githubusercontent.com/u/3738961?v=3&s=150)](https://github.com/caiocomandulli "On Github")
+
+Copyright (c) 2016 Caio Comandulli
+
+## Third party libraries
 
 This library uses REST Android Library by Caio Comandulli (myself), version 1.0. Copyright (C) 2016 Caio Comandulli. Licensed under MIT License.
 
