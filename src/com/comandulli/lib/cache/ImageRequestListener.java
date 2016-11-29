@@ -7,7 +7,7 @@ import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 
 /**
- * Listener class used by Cache, this maps a cache item request to all cache requests.
+ * Listener class used by BitCache, this maps a cache item request to all cache requests.
  *
  * @author <a href="mailto:caioa.comandulli@gmail.com">Caio Comandulli</a>
  * @since 1.0
@@ -35,7 +35,7 @@ public class ImageRequestListener implements Listener<Bitmap>, ErrorListener {
      */
     @Override
     public void onResponse(Bitmap response) {
-        Cache.respondImage(cachePath, response);
+        BitCache.respondImage(cachePath, response);
     }
 
     /**
@@ -46,7 +46,7 @@ public class ImageRequestListener implements Listener<Bitmap>, ErrorListener {
     @Override
     public void onErrorResponse(VolleyError error) {
         // unable to fetch request, leave as it is
-        Cache.removeFromQueue(cachePath);
+        BitCache.removeFromQueue(cachePath);
     }
 
     /**

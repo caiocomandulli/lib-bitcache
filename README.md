@@ -1,6 +1,6 @@
-# Cache Android Library
+# BitCache - Android Library
 
-Cache was designed to manage image caching in android.
+BitCache was designed to manage image caching in android.
 
 Making it easier for you to pre-load images and reuse them.
 
@@ -9,16 +9,16 @@ Making it easier for you to pre-load images and reuse them.
 Call the init method before using this library.
  
 ```java
- Cache.init(context);
+ BitCache.init(context);
  ```
  
-You create a CacheRequest<T> object to make a request to cache.
+You create a BitCacheRequest<T> object to make a request to cache.
 
 As in the example we request a Bitmap to use in a ImageView.
 
 ```java
   final ImageView imageView = (ImageView) findViewById(resource);
-  Cache.requestImage(requestPath, new CacheRequest<Bitmap>() {
+  BitCache.requestImage(requestPath, new BitCacheRequest<Bitmap>() {
       @Override
       public void onResponse(final Bitmap response) {
           context.runOnUiThread(new Runnable() {

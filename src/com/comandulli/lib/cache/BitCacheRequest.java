@@ -7,7 +7,7 @@ package com.comandulli.lib.cache;
  * @author <a href="mailto:caioa.comandulli@gmail.com">Caio Comandulli</a>
  * @since 1.0
  */
-public interface CacheRequest<T> {
+public interface BitCacheRequest<T> {
 
     /**
      * Called when the file is available.

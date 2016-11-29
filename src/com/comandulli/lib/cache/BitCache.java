@@ -26,20 +26,20 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Cache was designed to manage image caching in android.
+ * BitCache was designed to manage image caching in android.
  * This library was designed entirely with static methods as to allow its
  * from any point of your code.
  * <p>
  * Please do call {@link #init(Context)} before using it.
  * <p>
- * When a file is needed you create a CacheRequest {@see package com.comandulli.lib.cache.CacheRequest}, this binds
+ * When a file is needed you create a BitCacheRequest {@see package com.comandulli.lib.cache.BitCacheRequest}, this binds
  * the request to a hash entry, if the entry is already existent the cached file is returned, otherwise the file
  * is acquired in the provided URL and then cached and referenced in the hash entry.
  *
  * @author <a href="mailto:caioa.comandulli@gmail.com">Caio Comandulli</a>
  * @since 1.0
  */
-public class Cache {
+public class BitCache {
 
     /**
      * Android Data Folder.
@@ -77,7 +77,7 @@ public class Cache {
     /**
      * List of all requests to cached items.
      */
-    private static Hashtable<String, List<CacheRequest<?>>> queued;
+    private static Hashtable<String, List<BitCacheRequest<?>>> queued;
 
     /**
      * Initializes all variables.
@@ -145,10 +145,10 @@ public class Cache {
             cached.add(cachePath);
         }
         // respond
-        List<CacheRequest<?>> requests = queued.get(cachePath);
+        List<BitCacheRequest<?>> requests = queued.get(cachePath);
         Bitmap scaled = scaleDownBitmap(response, true);
-        for (CacheRequest<?> request : requests) {
-            ((CacheRequest<Bitmap>) request).onResponse(scaled);
+        for (BitCacheRequest<?> request : requests) {
+            ((BitCacheRequest<Bitmap>) request).onResponse(scaled);
         }
         queued.remove(cachePath);
     }
@@ -181,7 +181,7 @@ public class Cache {
      * @param request Request object.
      * @param query   Any query param needed in the url. Has no influence in cache location.
      */
-    public static void requestImage(String url, CacheRequest<Bitmap> request, String query) {
+    public static void requestImage(String url, BitCacheRequest<Bitmap> request, String query) {
         String cachePath = IMAGE_FOLDER + File.separator + MD5.encode(url);
         boolean isCached = false;
         // check if in cache
@@ -246,7 +246,7 @@ public class Cache {
                     }
                 }
                 // put into queue
-                List<CacheRequest<?>> requests = new ArrayList<>();
+                List<BitCacheRequest<?>> requests = new ArrayList<>();
                 requests.add(request);
                 queued.put(cachePath, requests);
             }
