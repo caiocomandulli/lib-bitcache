@@ -106,7 +106,7 @@ public class BitCache {
      * @param response  Bitmap to be responded.
      */
     @SuppressWarnings("unchecked")
-    public static void respondImage(String cachePath, Bitmap response) {
+    public static void respondImage(final String cachePath, final Bitmap response) {
         // cache it
         new Thread(new Runnable() {
             @Override
