@@ -11,11 +11,11 @@ import android.provider.MediaStore.Images.Media;
 import android.util.Log;
 import android.widget.ImageView.ScaleType;
 
+import com.android.volley.toolbox.ImageRequest;
 import com.comandulli.lib.MD5;
 import com.comandulli.lib.rest.NetworkRequestQueue;
 import com.comandulli.lib.rest.VolleyRequest;
 import com.comandulli.lib.rest.exception.NoInternetConnectionException;
-import com.android.volley.toolbox.ImageRequest;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -108,49 +108,59 @@ public class BitCache {
     @SuppressWarnings("unchecked")
     public static void respondImage(String cachePath, Bitmap response) {
         // cache it
-        boolean cacheError = false;
-        File cacheFile = new File(dataFolder + cachePath);
-        if (cacheFile.exists()) {
-            cacheError = true;
-        } else {
-            if (!cacheFile.getParentFile().exists()) {
-                if (!cacheFile.getParentFile().mkdirs()) {
-                    Log.w("Folder creation", "Failed to create folder");
-                }
-            }
-            try {
-                if (!cacheFile.createNewFile()) {
-                    Log.w("File creation", "Failed to create file");
-                }
-            } catch (IOException e) {
-                cacheError = true;
-            }
-            FileOutputStream out = null;
-            try {
-                out = new FileOutputStream(dataFolder + cachePath);
-                response.compress(CompressFormat.PNG, 100, out);
-            } catch (Exception e) {
-                cacheError = true;
-            } finally {
-                try {
-                    if (out != null) {
-                        out.close();
-                    }
-                } catch (IOException e) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                boolean cacheError = false;
+                File cacheFile = new File(dataFolder + cachePath);
+                if (cacheFile.exists()) {
                     cacheError = true;
+                } else {
+                    if (!cacheFile.getParentFile().exists()) {
+                        if (!cacheFile.getParentFile().mkdirs()) {
+                            Log.w("Folder creation", "Failed to create folder");
+                        }
+                    }
+                    try {
+                        if (!cacheFile.createNewFile()) {
+                            Log.w("File creation", "Failed to create file");
+                        }
+                    } catch (IOException e) {
+                        cacheError = true;
+                    }
+                    FileOutputStream out = null;
+                    try {
+                        out = new FileOutputStream(dataFolder + cachePath);
+                        response.compress(CompressFormat.PNG, 100, out);
+                    } catch (Exception e) {
+                        cacheError = true;
+                    } finally {
+                        try {
+                            if (out != null) {
+                                out.close();
+                            }
+                        } catch (IOException e) {
+                            cacheError = true;
+                        }
+                    }
+                }
+                if (!cacheError) {
+                    cached.add(cachePath);
                 }
             }
-        }
-        if (!cacheError) {
-            cached.add(cachePath);
-        }
+        }).start();
         // respond
-        List<BitCacheRequest<?>> requests = queued.get(cachePath);
-        Bitmap scaled = scaleDownBitmap(response, true);
-        for (BitCacheRequest<?> request : requests) {
-            ((BitCacheRequest<Bitmap>) request).onResponse(scaled);
-        }
-        queued.remove(cachePath);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<BitCacheRequest<?>> requests = queued.get(cachePath);
+                Bitmap scaled = scaleDownBitmap(response, true);
+                for (BitCacheRequest<?> request : requests) {
+                    ((BitCacheRequest<Bitmap>) request).onResponse(scaled);
+                }
+                queued.remove(cachePath);
+            }
+        }).start();
     }
 
     /**
