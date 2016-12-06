@@ -201,7 +201,11 @@ public class BitCache {
             if (cacheFile.exists()) {
                 isCached = true;
                 Bitmap bitmap = BitmapFactory.decodeFile(cacheFile.getAbsolutePath());
-                request.onResponse(scaleDownBitmap(bitmap, false));
+                if (bitmap != null) {
+                    request.onResponse(scaleDownBitmap(bitmap, false));
+                } else {
+                    isCached = false;
+                }
             }
         }
         if (!isCached) {
